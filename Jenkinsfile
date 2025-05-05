@@ -25,7 +25,15 @@ pipeline {
         stage('Run Flask App') {
             steps {
               sh 'nohup ./venv/bin/python app.py > output.log 2>&1 &'
+                
             }
         }
+
+         stage('Build Docker Image') {
+            steps {
+              sh 'docker build -t flask-app:latest .'
+                
+            }
+         }    
     }
 }
